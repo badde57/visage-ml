@@ -1,6 +1,7 @@
 # Visage-ML
 
-Visage-ML is a series of tools to do facial recognition on images (and create a searchable database).
+Visage-ML is a series of tools to do facial recognition on images (and create a
+searchable database).
 
 # Create you own database
 
@@ -27,13 +28,16 @@ https://github.com/serengil/deepface_models/releases/download/v1.0/facenet512_we
 https://github.com/serengil/deepface_models/releases/download/v1.0/retinaface.h5
 ```
 
-In the hasher folder, modify the docker-compose to point to your folder of images.
+In the hasher folder, modify the docker-compose to point to your folder of
+images.
+
 ```
 docker-compose build
 docker-compose up
 ```
 
-Once complete, It creates a sidecar file called <image name>.vector next to it each image.
+Once complete, It creates a sidecar file called <image name>.vector next to it
+each image.
 
 ## run the builder
 
@@ -46,7 +50,8 @@ docker-compose build
 docker-compose up
 ```
 
-This should give two files at the root of the folder you made available the container.
+This should give two files at the root of the folder you made available the
+container.
 
 `face.db` and `face.json` these files are used by the next container.
 
@@ -72,6 +77,21 @@ After that, run `docker-compose up`. It will run `main.py` will run and create
 `<image name>.json` file(s) for each vector in the directory, each containing
 the 10 closest results.
 
+If you're interested to compile the results of a directory of matches, you can
+do so like this:
+
+`python scoring.py --performers-file performers.json /tmp/images/`
+
+You'll get some output to stdout like this:
+
+```
+Score   Hits    Avg Distance    ID      Name
+0.75    9       11.93   fe6d11a2-fb64-498d-bdb7-c1d97d079c8b    Miss Lexa
+0.61    7       11.55   fe2faf98-6a14-4b93-88f1-9989779eeaeb    Sage
+0.57    4       7.07    a33862fc-5be7-412f-9d1b-bde39f2e1700    Diana Daniels
+0.53    7       13.19   fa57d66c-d523-4a56-80ff-83fd8bb076c6    MysteriousKathy
+0.42    5       11.92   46b28f9b-e150-4af0-a26d-6d29d7b116d5    Mia Love
+```
 
 ## Known issues and missing features
 
