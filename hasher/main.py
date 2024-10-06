@@ -4,6 +4,17 @@ import os
 import json
 from deepface.commons import functions
 from deepface.basemodels import Facenet512
+import tensorflow as tf
+
+gpus = tf.config.list_physical_devices('GPU')
+for gpu in gpus:
+    try:
+        tf.config.set_logical_device_configuration(gpu, [tf.config.LogicalDeviceConfiguration(memory_limit=800)] * 12)
+    except RuntimeError as e:
+        # Virtual devices must be set before GPUs have been initialized
+        print(e)
+logical_gpus = tf.config.list_logical_devices('GPU')
+print(len(gpus), "Physical GPU,", len(logical_gpus), "Logical GPUs")
 
 print("Loading model")
 # load the face model
