@@ -62,7 +62,7 @@ def process_vector(vector_file):
 
         if id in PERFORMER_DB:
             person = PERFORMER_DB.get(id)
-            persons[id].update(person)
+            persons[id].update({"name":person})
 
     results = sorted(persons.values(), key=lambda x: x["distance"])[:10]
 

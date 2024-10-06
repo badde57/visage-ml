@@ -54,7 +54,23 @@ This should give two files at the root of the folder you made available the cont
 
 Once again. modify the docker-compose.
 
-It creates a <image name>.json file with 10 closest results
+You'll need to create the file `matcher/performers.json` for the container to
+build. It should have contents like this:
+
+```
+{
+"93aa1a98-e86e-47a2-b661-f5d703a6e727":"0005"
+}
+```
+
+where the key is a performer's stash_id and the value is a performer's name.
+
+You'll also need to copy `face.db` and `face.json` from the previous step to
+the `matcher/` directory.
+
+After that, run `docker-compose up`. It will run `main.py` will run and create
+`<image name>.json` file(s) for each vector in the directory, each containing
+the 10 closest results.
 
 
 ## Known issues and missing features
